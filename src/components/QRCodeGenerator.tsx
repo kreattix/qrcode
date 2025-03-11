@@ -2,6 +2,7 @@ import { useState, useRef, ChangeEvent, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 import { HexColorPicker } from 'react-colorful';
 import toast from 'react-hot-toast';
+import AppLogo from '@/app/logo.png';
 import {
   LinkIcon,
   EnvelopeIcon,
@@ -11,6 +12,7 @@ import {
   ArrowDownTrayIcon,
   PhotoIcon,
 } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 
 type QRType = 'url' | 'text' | 'email' | 'phone' | 'wifi';
 
@@ -160,7 +162,7 @@ export default function QRCodeGenerator() {
       } catch (err) {
         // Fallback: Copy to clipboard using canvas data URL
         const dataUrl = canvas.toDataURL('image/png');
-        const img = new Image();
+        const img = document.createElement('img');
         img.src = dataUrl;
         
         // Create a temporary textarea for copying
@@ -195,10 +197,13 @@ export default function QRCodeGenerator() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
           <div className="flex justify-center mb-4">
-            <img
-              src="/logo.svg"
+            <Image
+              src={AppLogo}
               alt="QR Code Generator Logo"
-              className="w-16 h-16 transform transition-all duration-300 hover:scale-110"
+              width={64}
+              height={64}
+              priority
+              className="transform transition-all duration-300 hover:scale-110"
             />
           </div>
           <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 mb-2">
@@ -482,12 +487,7 @@ export default function QRCodeGenerator() {
 
         {/* Kreattix Footer */}
         <div className="mt-8 text-center">
-          <a
-            href="https://kreattix.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-200"
-          >
+          <div className="inline-flex items-center space-x-2 text-gray-600 dark:text-gray-300">
             <span className="text-sm">Powered by</span>
             <svg
               className="h-5 w-auto"
@@ -509,7 +509,7 @@ export default function QRCodeGenerator() {
                 KREATTIX
               </text>
             </svg>
-          </a>
+          </div>
         </div>
       </div>
     </div>
