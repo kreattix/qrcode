@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
     },
+  },
+  alternates: {
+    canonical: 'https://kreattix.github.io/qrcode',
   },
   openGraph: {
     type: 'website',
@@ -73,6 +77,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebApplication',
+              name: 'QR Code Generator',
+              description: 'Generate customizable QR codes with colors, logos, and frames. Support for URLs, text, phone numbers, email, and Wi-Fi QR codes.',
+              url: 'https://kreattix.github.io/qrcode',
+              applicationCategory: 'UtilityApplication',
+              operatingSystem: 'Any',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD'
+              },
+              author: {
+                '@type': 'Organization',
+                name: 'Kreattix',
+                url: 'https://github.com/kreattix'
+              }
+            })
+          }}
+        />
+      </head>
       <body className={`${inter.className} antialiased`}>
         <GoogleAnalytics />
         {children}
