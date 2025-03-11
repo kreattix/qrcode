@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Square with rounded corners -->
+  <rect x="10" y="10" width="80" height="80" rx="12" fill="url(#gradient)"/>
+  
+  <!-- QR Code Pattern -->
+  <rect x="25" y="25" width="20" height="20" fill="white"/>
+  <rect x="55" y="25" width="20" height="20" fill="white"/>
+  <rect x="25" y="55" width="20" height="20" fill="white"/>
+  <rect x="55" y="55" width="8" height="8" fill="white"/>
+  <rect x="67" y="55" width="8" height="8" fill="white"/>
+  <rect x="55" y="67" width="8" height="8" fill="white"/>
+  <rect x="67" y="67" width="8" height="8" fill="white"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+</svg> 
