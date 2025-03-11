@@ -54,7 +54,6 @@ export const metadata: Metadata = {
       { url: '/qrcode/apple-touch-icon.png' },
     ],
   },
-  manifest: '/qrcode/manifest.json',
   viewport: {
     width: 'device-width',
     initialScale: 1,
