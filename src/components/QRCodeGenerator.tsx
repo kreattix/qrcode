@@ -221,31 +221,28 @@ export default function QRCodeGenerator() {
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                   QR Code Type
                 </label>
-                <div className="grid grid-cols-5 gap-2">
+                <div className="flex flex-wrap">
                   {[
                     { value: 'url', icon: LinkIcon, label: 'URL' },
                     { value: 'text', icon: ChatBubbleBottomCenterTextIcon, label: 'Text' },
                     { value: 'email', icon: EnvelopeIcon, label: 'Email' },
                     { value: 'phone', icon: PhoneIcon, label: 'Phone' },
                     { value: 'wifi', icon: WifiIcon, label: 'Wi-Fi' },
-                  ].map((type) => {
-                    const Icon = type.icon;
-                    return (
-                      <button
-                        key={type.value}
-                        type="button"
-                        onClick={() => setQRData(prev => ({ ...prev, type: type.value as QRType }))}
-                        className={`flex flex-col items-center justify-center p-2 rounded-lg border-2 transition-all duration-200 ${
-                          qrData.type === type.value
-                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
-                            : 'border-gray-200 dark:border-gray-600 hover:border-indigo-200 dark:hover:border-indigo-800'
-                        }`}
-                      >
-                        <Icon className="h-5 w-5 mb-1" />
-                        <span className="text-xs font-medium">{type.label}</span>
-                      </button>
-                    );
-                  })}
+                  ].map(({ value, icon: Icon, label }) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => setQRData((prev: QRData) => ({ ...prev, type: value as QRType }))}
+                      className={`flex-1 basis-[calc(50%-0.25rem)] sm:basis-[calc(20%-0.8rem)] min-w-[70px] m-1 flex flex-col items-center justify-center p-2 rounded-lg text-xs font-medium transition-colors ${
+                        qrData.type === value
+                          ? 'bg-indigo-500 text-white'
+                          : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5 mb-1" />
+                      {label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
